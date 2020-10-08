@@ -1,26 +1,37 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, {Component} from "react"
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+    // Actually, there is no longer need to use the constructor at all
+    state = {
+        firstName: ""
+    }
+    
+    // Change to use arrow functions so that there is no need to bind methods in the constructor
+    handleChange = (event) => {
+        const { name, value } = event.target
+        this.setState({
+            [name]: value
+        })
+    }
+    
+    render() {
+        return (
+            <main>
+                <form>
+                    <input 
+                        type="text"
+                        name="firstName" 
+                        value={this.state.firstName} 
+                        onChange={this.handleChange} 
+                        placeholder="First Name"
+                    />
+                </form>
+                <h1>{this.state.firstName}</h1>
+            </main>
+        )
+    }
 }
 
-export default App;
+export default App
+
+
